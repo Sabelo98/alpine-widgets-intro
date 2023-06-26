@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>UrbanLOcker</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+
+    <style>
+        .contracts{
+            background-color:black ;
+            color: violet;
+            padding: 2em;
+            width:auto
+        }
+
+        .services {
+            background-color: rgb(7, 4, 2);
+            color: rgb(228, 135, 73);
+            padding: 1em;
+            width: auto;
+        }
+
+        .rentals {
+            background-color: darkslategray;
+            color: lightgreen;
+            padding: 1em;
+            width: auto;
+        }
+
+        .sales {
+            background-color: red;
+            color: black;
+            padding: 2em;
+            width: auto;
+        }
+
+        .slogan {
+            background-color: rgb(10, 36, 36);
+            color: rgb(126, 168, 236);
+            padding: 1em;
+            width: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+<div>
+
+    <div x-data="{ title: '' }">
+
+        <p x-text="title"></p>
+        <h1>UrbanLOcker</h1>
+        <button x-on:click="title='Professional and Progressive'">click</button>
+    </div>
+
+    
+    <div class="row">
+        <div class="col s6 l6" x-data="{ count: 1 }">
+            <p x-text="count"></p>
+            <button @click="count++">Count Up</button>
+            <button @click="count--">Count Down</button>
+        </div>
+        <div x-data="{ countdown: 60 }"
+        x-init="setInterval(function(){
+                countdown--;
+             }, 1000);
+             ">
+        <h1 x-text="countdown" class="col s6 l6"></h1>
+        </div>
+             <h1 x-text="countdown"></h1>
+        </div>
+    </div>
+    
+
+    <div x-data="{ show: false }" >
+        <button @click="show=!show"  id="scale-demo" href="#!" class="btn-floating btn-large scale-transition">About</button>
+        <div x-show.transition="show">Auto diagnostics and furniture rentals</div>
+    </div>
+
+    <div x-data="{''}">
+        <p x-text="title"></p>
+        <input type="text" x-model="title">
+    </div>
+
+    <div class="slogan" x-data="{ code: '<p>At URbanLOcker professionalism and quality is the ultimate value proposition we afford our clients</p>' }">
+        <div x-html="code"></div>
+    </div>
+
+    <div  class="rentals" x-data="{ code: '<p>Dynamic Paragraph</p>' }">
+        <div x-ref="sentence">Fridge rentals from R300p/m</div>
+        <button @click="$refs.sentence.innerText = 'Rental of bar fridges from R250p/m'">Change type of fridge</button>
+    </div>
+
+    <div class="Sales" x-data="{ code: '<p>Dynamic Paragraph</p>' }">
+        <div x-ref="sentence">Fridge sales from R3000</div>
+        <button @click="$refs.sentence.innerText = 'Sale of bar fridges from R2000'">Change type of fridge</button>
+    </div>
+
+    <div class="contracts" x-data="{ contract: 'six' }">
+        <template x-if="contract=='six'">
+            <p>12 month contracts available</p>
+        </template>
+        <template x-if="contract=='twelve'">
+            <p>6 month contract available</p>
+        </template>
+        <button @click="contract = 'twelve'">Change term</button>
+    </div>
+
+    <div class="services" x-data="{ services: ['Electronics', 'Auto-diagnositic services', 'Storage facilities'] }">
+        <p>Services</p>
+        <ul>
+            <template x-for="item in services">
+                <li x-text="item"></li>
+            </template>
+        </ul>
+    </div>
+
+
+</div>
+
+
+
+  
+</div>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+</body>
+</html>
